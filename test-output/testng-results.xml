@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="10" passed="10" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-02-23T08:38:58 CST" name="Cucumber Suite" finished-at="2025-02-23T08:39:09 CST" duration-ms="10741">
+    <groups>
+      <group name="cucumber">
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.CucumberTest@17503f6b]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+      </group> <!-- cucumber -->
+    </groups>
+    <test started-at="2025-02-23T08:38:58 CST" name="Cucumber Test" finished-at="2025-02-23T08:39:09 CST" duration-ms="10741">
+      <class name="testRunner.CucumberTest">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:testRunner.CucumberTest@17503f6b]" started-at="2025-02-23T08:38:58 CST" name="setUpClass" finished-at="2025-02-23T08:38:59 CST" duration-ms="431" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@1f6d7e7c]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpClass -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.CucumberTest@17503f6b]" started-at="2025-02-23T08:38:59 CST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-02-23T08:39:01 CST" duration-ms="2084" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["User is on Swagger page and sends a POST request"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Add a New Pet"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.CucumberTest@17503f6b]" started-at="2025-02-23T08:39:01 CST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-02-23T08:39:03 CST" duration-ms="1730" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Create a pet using data from Excel"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Add a New Pet"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.CucumberTest@17503f6b]" started-at="2025-02-23T08:39:03 CST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-02-23T08:39:03 CST" duration-ms="815" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Create a pet using data from Excel"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Add a New Pet"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.CucumberTest@17503f6b]" started-at="2025-02-23T08:39:03 CST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-02-23T08:39:04 CST" duration-ms="612" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Create a pet using data from Excel"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Add a New Pet"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.CucumberTest@17503f6b]" started-at="2025-02-23T08:39:04 CST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-02-23T08:39:05 CST" duration-ms="611" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Create a pet using data from Excel"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Add a New Pet"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.CucumberTest@17503f6b]" started-at="2025-02-23T08:39:05 CST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-02-23T08:39:05 CST" duration-ms="782" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Create a pet using data from Excel"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Add a New Pet"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.CucumberTest@17503f6b]" started-at="2025-02-23T08:39:05 CST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-02-23T08:39:06 CST" duration-ms="448" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Create a pet using data from Excel"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Add a New Pet"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.CucumberTest@17503f6b]" started-at="2025-02-23T08:39:06 CST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-02-23T08:39:07 CST" duration-ms="1015" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Create a pet using data from Excel"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Add a New Pet"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.CucumberTest@17503f6b]" started-at="2025-02-23T08:39:07 CST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-02-23T08:39:07 CST" duration-ms="603" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Create a pet using data from Excel"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Add a New Pet"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.CucumberTest@17503f6b]" started-at="2025-02-23T08:39:07 CST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-02-23T08:39:09 CST" duration-ms="1491" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Create a pet using data from Excel"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Add a New Pet"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:testRunner.CucumberTest@17503f6b]" started-at="2025-02-23T08:39:09 CST" name="tearDownClass" finished-at="2025-02-23T08:39:09 CST" duration-ms="43" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownClass -->
+      </class> <!-- testRunner.CucumberTest -->
+    </test> <!-- Cucumber Test -->
+  </suite> <!-- Cucumber Suite -->
+</testng-results>
