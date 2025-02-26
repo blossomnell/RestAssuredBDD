@@ -1,0 +1,21 @@
+# Ignore Eclipse-specific files
+.metadata/
+.settings/
+bin/
+target/
+.classpath
+.project
+
+# Ignore OS-generated files
+.DS_Store
+Thumbs.db
+
+# Ignore Maven or Gradle build files (if applicable)
+*.log
+*.war
+*.ear
+*.jar
+
+# Ignore IntelliJ IDEA and VS Code settings (if you use them)
+.idea/
+.vscode/
