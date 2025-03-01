@@ -6,6 +6,7 @@ import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import utilities.ExcelReader;
+import utilities.LoggerLoad;
 import static io.restassured.RestAssured.given;
 
 import java.io.IOException;
@@ -20,7 +21,6 @@ public class POSTPetSteps {
     private Response response;
     private Map<String, String> petData = new HashMap<>();
 
-    // Static variable to store the first valid pet ID for chaining (from Excel)
     private static String validPetId;
 
     public static String getValidPetId() {
@@ -29,7 +29,7 @@ public class POSTPetSteps {
 
     @Given("the user is on the Swagger Petstore page")
     public void the_user_is_on_the_swagger_petstore_page() {
-        System.out.println("🔹 User is on the Swagger Petstore API page.");
+        LoggerLoad.info("User is on the Swagger Petstore API page.");
     }
 
     @Given("I have test data from sheet {string} at row {int}")
@@ -37,9 +37,9 @@ public class POSTPetSteps {
         this.sheetName = sheet;
         this.rowNum = row;
 
-        System.out.println("📌 Using test data from Sheet: " + sheetName + ", Row: " + rowNum);
+        LoggerLoad.info("Using test data from Sheet: " + sheetName + ", Row: " + rowNum);
         String excelFilePath = BaseClass.getPropertyValue("excelFilePath");
-        System.out.println("📂 Excel File Path: " + excelFilePath);
+        LoggerLoad.info("Excel File Path: " + excelFilePath);
 
         ExcelReader excelReader = new ExcelReader(excelFilePath);
 
@@ -52,73 +52,55 @@ public class POSTPetSteps {
             petData.put("status", excelReader.getCellData(sheet, row, 7).trim());
             petData.put("expectedStatus", excelReader.getCellData(sheet, row, 8).trim());
 
-            // Debugging log
-            System.out.println("📋 Retrieved Test Data: " + petData);
-
+            LoggerLoad.info("Retrieved Test Data: " + petData);
         } catch (Exception e) {
-            throw new RuntimeException("❌ Error reading Excel data at sheet: " + sheet + ", row: " + row, e);
+            LoggerLoad.error("Error reading Excel data at sheet: " + sheet + ", row: " + row + " Exception: " + e.toString());
+            throw new RuntimeException(e);
         }
     }
 
     @When("I create a pet with this data")
-    public void i_create_a_pet_with_this_data() {
+    @When("they send a POST request to add a new pet")
+    public void send_post_request_to_create_pet() {
         sendPostRequest();
     }
 
-    @When("they send a POST request to add a new pet")
-    public void they_send_a_post_request_to_add_a_new_pet() {
-        // Directly sending a request with fixed pet data (for first scenario, but does NOT store the ID)
-        String requestBody = "{ \"id\": 101, \"name\": \"Buddy\", \"status\": \"available\" }";
-
-        response = given()
-                .header("Content-Type", "application/json; charset=UTF-8")
-                .body(requestBody)
-                .when()
-                .post("https://petstore.swagger.io/v2/pet");
-
-        // Print response for debugging
-        System.out.println("🔹 Response Status Code: " + response.getStatusCode());
-        System.out.println("🔹 Response Body: " + response.getBody().asString());
-
-        // ✅ This scenario does NOT store the pet ID for chaining
-        System.out.println("🔹 First scenario executed, but pet ID is NOT stored.");
-    }
-
     private void sendPostRequest() {
-        // Debugging logs before sending request
-        System.out.println("🔍 Debugging: Checking petData before sending POST request...");
-        System.out.println("🔹 ID: " + petData.get("id"));
-        System.out.println("🔹 Name: " + petData.get("name"));
-        System.out.println("🔹 Status: " + petData.get("status"));
-        System.out.println("🔹 Expected Status Code: " + petData.get("expectedStatus"));
+        LoggerLoad.info("Preparing to send POST request with pet data: " + petData);
 
-        // Construct JSON request body dynamically
+        if (petData.isEmpty()) {
+            LoggerLoad.warn("petData is empty. Executing default POST request for the first scenario.");
+            String requestBody = "{ \"id\": 101, \"name\": \"Buddy\", \"status\": \"available\" }";
+
+            response = given()
+                    .header("Content-Type", "application/json; charset=UTF-8")
+                    .body(requestBody)
+                    .when()
+                    .post("https://petstore.swagger.io/v2/pet");
+
+            LoggerLoad.info("Response Status Code: " + response.getStatusCode());
+            LoggerLoad.info("Response Body: " + response.getBody().asString());
+            return;
+        }
+
         StringBuilder jsonRequest = new StringBuilder("{");
 
-        // Add ID
-        if (!petData.get("id").isEmpty()) {
+        if (petData.containsKey("id") && !petData.get("id").isEmpty()) {
             jsonRequest.append("\"id\": ").append(petData.get("id")).append(", ");
         }
 
         jsonRequest.append("\"category\": { \"name\": \"").append(petData.get("category_name")).append("\" }, ");
-
-        // Always include "name", even if it's empty
         jsonRequest.append("\"name\": \"").append(petData.get("name")).append("\", ");
-
         jsonRequest.append("\"photoUrls\": [ \"").append(petData.get("photoUrls")).append("\" ], ");
         jsonRequest.append("\"tags\": [ { \"name\": \"").append(petData.get("tags_name")).append("\" } ], ");
 
-        // Handling Status based on API behavior
-        if (petData.get("status").isEmpty()) {
-            System.out.println("⚠ Warning: 'status' is empty. Removing it from request.");
-        } else {
+        if (petData.containsKey("status") && !petData.get("status").isEmpty()) {
             jsonRequest.append("\"status\": \"").append(petData.get("status")).append("\" ");
         }
 
         jsonRequest.append("}");
 
-        // Print final request body for debugging
-        System.out.println("📨 Final JSON Request: " + jsonRequest);
+        LoggerLoad.info("Final JSON Request: " + jsonRequest);
 
         response = given()
                 .header("Content-Type", "application/json; charset=UTF-8")
@@ -126,40 +108,34 @@ public class POSTPetSteps {
                 .when()
                 .post("https://petstore.swagger.io/v2/pet");
 
-        // Print response for debugging
-        System.out.println("🔹 Response Status Code: " + response.getStatusCode());
-        System.out.println("🔹 Response Body: " + response.getBody().asString());
+        LoggerLoad.info("Response Status Code: " + response.getStatusCode());
+        LoggerLoad.info("Response Body: " + response.getBody().asString());
 
-        // ✅ Store first valid pet ID from Excel-driven tests only
-        if (response.getStatusCode() == 200) {
-            if (validPetId == null) {
-                validPetId = response.jsonPath().getString("id");
-                System.out.println("✅ Stored first valid pet ID from Excel for chaining: " + validPetId);
-            }
+        if (response.getStatusCode() == 200 && validPetId == null) {
+            validPetId = response.jsonPath().getString("id");
+            LoggerLoad.info("Stored first valid pet ID for chaining: " + validPetId);
         } else {
-            System.out.println("❌ Pet creation failed. No ID stored for chaining.");
+            LoggerLoad.warn("Pet creation failed. No ID stored for chaining.");
         }
     }
 
     @Then("the pet should be successfully added")
     public void the_pet_should_be_successfully_added() {
-        Assert.assertEquals(response.getStatusCode(), 200, "❌ Pet creation failed!");
-        System.out.println("✅ Pet was successfully added!");
+        Assert.assertEquals(response.getStatusCode(), 200, "Pet creation failed!");
+        LoggerLoad.info("Pet was successfully added!");
     }
 
     @Then("I should receive a response with status code {string}")
     public void i_should_receive_a_response_with_status_code(String expectedStatus) {
-        String[] statusParts = expectedStatus.split(" ", 2);
-        int expectedCode = Integer.parseInt(statusParts[0]);
+        int expectedCode = Integer.parseInt(expectedStatus.split(" ")[0]);
 
-        // Print actual response for debugging
-        System.out.println("🔹 Actual Response Status Code: " + response.getStatusCode());
-        System.out.println("🔹 Actual Response Body: " + response.getBody().asString());
+        LoggerLoad.info("Actual Response Status Code: " + response.getStatusCode());
+        LoggerLoad.info("Actual Response Body: " + response.getBody().asString());
 
         response.then().statusCode(expectedCode);
 
         if (expectedCode == 400) {
-            Assert.assertTrue(response.getBody().asString().contains("bad input"), "❌ Expected 'bad input' message for 400 error.");
+            Assert.assertTrue(response.getBody().asString().contains("bad input"), "Expected 'bad input' message for 400 error.");
         }
     }
 }
