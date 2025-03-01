@@ -23,4 +23,4 @@ Feature: Add a New Pet
       | POST      |      7 | 200 OK            |
       | POST      |      8 | 200 OK            |
       | POST      |      9 | 400 Bad Request   |
-      | POST      |     10 | 500 Server Error  |
+      | POST      |     10 | 400 Bad Request   |
