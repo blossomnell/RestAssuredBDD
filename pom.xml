@@ -40,6 +40,13 @@
             <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
+        
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>5.3.0</version> <!-- Use the latest version if available -->
+        </dependency>
+
 
         <!-- Cucumber Dependencies -->
         <dependency>
@@ -125,12 +132,12 @@
             <version>2.15.2</version>
         </dependency>
 
-        <!-- SLF4J Binding to resolve logging errors -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.36</version>
-        </dependency>
+       <dependency>
+             <groupId>org.apache.logging.log4j</groupId>
+             <artifactId>log4j-slf4j-impl</artifactId>
+             <version>2.17.2</version>
+      </dependency>
+
 
         <!-- Lombok -->
         <dependency>
@@ -138,6 +145,11 @@
             <artifactId>lombok</artifactId>
             <version>1.18.30</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+        	<groupId>RESTAssuredTestNG</groupId>
+        	<artifactId>RESTAssuredTestNG</artifactId>
+        	<version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

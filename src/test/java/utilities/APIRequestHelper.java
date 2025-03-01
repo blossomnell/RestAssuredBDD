@@ -27,12 +27,48 @@ public class APIRequestHelper {
      * @return Response from API.
      */
     public static Response getPetById(String petId) {
-        return given()
+        String requestUrl = BASE_URL + "/" + petId;
+        
+        // ✅ Print the actual request being sent
+        System.out.println("🔹 Sending GET Request to: " + requestUrl);
+
+        Response response = given()
                 .header("Accept", "application/json")
                 .when()
-                .get(BASE_URL + "/" + petId);
+                .get(requestUrl);
+
+        // ✅ Debug response for further validation
+        System.out.println("🔹 Response Status Code: " + response.getStatusCode());
+        System.out.println("🔹 Response Body: " + response.getBody().asPrettyString());
+
+        return response;
     }
 
+    /**
+     * Sends a GET request to fetch pets by status.
+     * @param status The pet status (e.g., available, pending, sold).
+     * @return Response from API.
+     */
+    public static Response getPetsByStatus(String status) {
+        String requestUrl = BASE_URL + "/findByStatus";
+
+        // ✅ Print the actual request being sent
+        System.out.println("🔹 Sending GET Request to: " + requestUrl + "?status=" + status);
+
+        Response response = given()
+                .header("Accept", "application/json")
+                .queryParam("status", status)
+                .when()
+                .get(requestUrl);
+
+        // ✅ Debug response for further validation
+        System.out.println("🔹 Response Status Code: " + response.getStatusCode());
+        System.out.println("🔹 Response Body: " + response.getBody().asPrettyString());
+
+        return response;
+    }
+
+    
     /**
      * Sends a PUT request to update a pet.
      * @param petId Pet ID.
