@@ -3,7 +3,7 @@ Feature: Retrieve Pet Information
   Background:
     Given the user is on the Swagger Pet store page
 
- @tag
+ @get
   Scenario: Retrieve the pet that was created
     Given I have a stored pet ID from the POST request
     When I send a GET request to retrieve the pet by ID
