@@ -19,3 +19,10 @@ Thumbs.db
 # Ignore IntelliJ IDEA and VS Code settings (if you use them)
 .idea/
 .vscode/
+
+# Ignore test output files
+test-output/
+
+# Ignore Allure results
+allure-results/
+
